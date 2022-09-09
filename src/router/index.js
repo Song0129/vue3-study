@@ -3,7 +3,16 @@ import Home from "../views/Home.vue";
 
 const routes = [
 	{
+		path: "/login",
+		name: "login",
+		meta: {
+			title: "登录",
+		},
+		component: () => import(/* webpackChunkName: "login" */ "../views/Login/Login"),
+	},
+	{
 		path: "/",
+		redirect: "/index",
 		name: "Home",
 		component: Home,
 		meta: {
@@ -11,14 +20,31 @@ const routes = [
 			requireAuth: false,
 			sideBar: true,
 		},
-	},
-	{
-		path: "/about",
-		name: "About",
-		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
-		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
+		children: [
+			{
+				path: "/index",
+				name: "index",
+				meta: {
+					title: "Index",
+					requireAuth: false,
+					sideBar: true,
+				},
+				component: () => import(/* webpackChunkName: "index" */ "../views/Index/Index"),
+			},
+			{
+				path: "/about",
+				name: "About",
+				// route level code-splitting
+				// this generates a separate chunk (about.[hash].js) for this route
+				// which is lazy-loaded when the route is visited.
+				component: () => import(/* webpackChunkName: "about" */ "../views/About/About.vue"),
+				meta: {
+					title: "About",
+					requireAuth: false,
+					sideBar: true,
+				},
+			},
+		],
 	},
 ];
 

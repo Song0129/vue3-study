@@ -1,7 +1,7 @@
 <template>
 	<a-layout>
-		<a-layout-sider v-model:collapsed="collapsed" collapsible>
-			<sideBar :collapsed="collapsed"></sideBar>
+		<a-layout-sider v-model:collapsed="collapsed" width="256px" collapsible>
+			<sideBar v-if="hasSideBar" :collapsed="collapsed"></sideBar>
 		</a-layout-sider>
 		<a-layout>
 			<a-layout-header style="background: #fff; padding: 0; display: flex; align-items: center">
@@ -24,7 +24,8 @@
 <script>
 	import TopBar from "../components/common/TopBar.vue";
 	import SideBar from "../components/common/SideBar.vue";
-	import { ref } from "vue";
+	import { ref, watch } from "vue";
+	import { useRoute, onBeforeRouteUpdate } from "vue-router";
 
 	export default {
 		name: "Home",
@@ -36,10 +37,31 @@
 			let hasSideBar = ref(true);
 			let collapsed = ref(false); // 显示隐藏菜单
 
+			const $route = useRoute();
+
 			function toggleCollapsedHandle() {
 				collapsed.value = !collapsed.value;
 				console.log(collapsed);
 			}
+
+			console.log("$route", $route.meta);
+
+			watch(
+				$route,
+				(newVal, oldVal) => {
+					console.log("count - watch", newVal.meta, oldVal);
+					hasSideBar = newVal.meta.sideBar ? true : false;
+				},
+				{
+					immediate: true,
+				}
+			);
+
+			onBeforeRouteUpdate(to => {
+				// 注意，在路由进入之前，组件实例还未渲染，所以无法获取this实例，只能通过vm来访问组件实例
+				// hasSideBar = to.meta.sideBar;
+				console.log("to", to);
+			});
 
 			return {
 				hasSideBar, //true有  false无 根据router中meta  sidebar属性
@@ -50,18 +72,18 @@
 			};
 		},
 
-		beforeRouteEnter(to, from, next) {
-			// 注意，在路由进入之前，组件实例还未渲染，所以无法获取this实例，只能通过vm来访问组件实例
-			next(vm => {
-				vm.hasSideBar = to.meta.sideBar;
-			});
-		},
-		watch: {
-			$route(value) {
-				// console.log(value)
-				this.hasSideBar = value.meta.sideBar ? true : false;
-			},
-		},
+		// beforeRouteEnter(to, from, next) {
+		// 	// 注意，在路由进入之前，组件实例还未渲染，所以无法获取this实例，只能通过vm来访问组件实例
+		// 	next(vm => {
+		// 		vm.hasSideBar = to.meta.sideBar;
+		// 	});
+		// },
+		// watch: {
+		// 	$route(value) {
+		// 		// console.log(value)
+		// 		this.hasSideBar = value.meta.sideBar ? true : false;
+		// 	},
+		// },
 	};
 </script>
 

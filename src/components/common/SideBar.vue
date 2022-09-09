@@ -83,7 +83,7 @@
 			let logo = require("../../assets/images/process-white.png");
 
 			let menuList = reactive([
-				{ id: 0, name: "Form", url: "/form", icon: "SmileOutlined", children: [] },
+				{ id: 0, name: "Index", url: "/index", icon: "SmileOutlined", children: [] },
 				{
 					id: 1,
 					name: "About",
