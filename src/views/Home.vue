@@ -1,15 +1,15 @@
 <template>
-	<a-layout id="components-layout-demo-custom-trigger" class="screen-xxl">
-		<a-layout-sider v-model="collapsed" width="256px" collapsible>
-			<sideBar v-if="hasSideBar" :collapsed="collapsed" @toggleCollapsed="toggleCollapsedHandle"></sideBar>
+	<a-layout>
+		<a-layout-sider v-model:collapsed="collapsed" collapsible>
+			<sideBar :collapsed="collapsed"></sideBar>
 		</a-layout-sider>
 		<a-layout>
 			<a-layout-header style="background: #fff; padding: 0; display: flex; align-items: center">
 				<topBar>
 					<template v-slot:menu-btn>
 						<a-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsedHandle">
-							<a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
-							123123
+							<menu-unfold-outlined v-if="collapsed" class="trigger" />
+							<menu-fold-outlined v-else class="trigger" />
 						</a-button>
 					</template>
 				</topBar>
@@ -45,6 +45,8 @@
 				hasSideBar, //true有  false无 根据router中meta  sidebar属性
 				collapsed,
 				toggleCollapsedHandle,
+
+				selectedKeys: ref(["1"]),
 			};
 		},
 
@@ -70,6 +72,13 @@
 
 	.ant-layout {
 		height: 100vh;
+	}
+
+	.logo {
+		height: 88px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	#components-layout-demo-custom-trigger .trigger {

@@ -1,8 +1,7 @@
 <template>
 	<div class="leftNav">
 		<div class="logo">
-			<a href="/" class="router-link-active"
-				>{{ collapsed }}
+			<a href="/" class="router-link-active">
 				<h1 v-if="!collapsed">
 					<svg
 						t="1597989581210"
@@ -42,19 +41,19 @@
 				</h1>
 			</a>
 		</div>
-		<a-menu :default-selected-keys="['1']" :default-open-keys="['sub1']" mode="inline" theme="dark" :inline-collapsed="collapsed">
+		<a-menu :default-selected-keys="['1']" :default-open-keys="['sub1']" mode="inline" theme="dark">
 			<template v-for="menu in menuList">
 				<a-menu-item v-if="!menu.children.length" :key="menu.id" @click="menuClick(menu)">
-					<a-icon :type="menu.icon" />
+					<component :is="menu.icon"></component>
 					<span>{{ menu.name }}</span>
 				</a-menu-item>
 				<a-sub-menu v-else :key="menu.id">
 					<template v-slot:title>
-						<a-icon type="mail" />
+						<component :is="menu.icon"></component>
 						<span>{{ menu.name }}</span>
 					</template>
 					<a-menu-item v-for="inMenu in menu.children" :key="inMenu.id" @click="menuClick(menu)">
-						<a-icon :type="menu.icon" />
+						<component :is="menu.icon"></component>
 						<span>{{ inMenu.name }}</span>
 					</a-menu-item>
 				</a-sub-menu>
@@ -66,6 +65,7 @@
 <script>
 	import { ref, reactive } from "vue";
 	import { useRoute, useRouter } from "vue-router";
+
 	export default {
 		name: "SideBar",
 		components: {},
@@ -76,23 +76,20 @@
 			},
 		},
 		setup(props, ctx) {
-			console.log(props.collapsed);
 			const $router = useRouter();
 			const $route = useRoute();
-			console.log($router, $route.path);
+
 			let title = ref("Vue3-Study");
 			let logo = require("../../assets/images/process-white.png");
 
-			console.log(logo);
-
 			let menuList = reactive([
-				{ id: 0, name: "Form", url: "/form", icon: "smile", children: [] },
+				{ id: 0, name: "Form", url: "/form", icon: "SmileOutlined", children: [] },
 				{
 					id: 1,
 					name: "About",
 					url: "/about",
-					icon: "smile",
-					children: [{ id: 1, name: "About", url: "/about", icon: "smile" }],
+					icon: "SmileOutlined",
+					children: [{ id: 1, name: "About", url: "/about", icon: "SmileOutlined" }],
 				},
 				// {id: 10, name: "myDrag", url: "/myDrag", icon: "smile", children: []},
 				// {id: 2, name: "jQueryDrag", url: "/jQueryDrag", icon: "star", children: []},
@@ -120,7 +117,7 @@
 
 			return {
 				vm: this,
-				logo: require("../../assets/images/process-white.png"),
+				logo,
 				title,
 				menuList,
 				toggleCollapsed,
