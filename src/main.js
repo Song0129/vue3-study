@@ -24,5 +24,3 @@ app.config.globalProperties.$Tools = Tools; //工具类
 app.config.globalProperties.$baseUrl = baseUrl; //基本路径
 
 app.use(router).use(antComponents).mount("#app");
-
-// createApp(App).mount("#app");

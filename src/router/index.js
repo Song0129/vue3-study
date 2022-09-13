@@ -44,6 +44,16 @@ const routes = [
 					sideBar: true,
 				},
 			},
+			{
+				path: "/pixi",
+				name: "pixi",
+				meta: {
+					title: "Pixi",
+					requireAuth: false,
+					sideBar: true,
+				},
+				component: () => import(/* webpackChunkName: "index" */ "../views/Pixi/Pixi"),
+			},
 		],
 	},
 ];

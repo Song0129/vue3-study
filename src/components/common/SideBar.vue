@@ -91,14 +91,7 @@
 					icon: "SmileOutlined",
 					children: [{ id: 1, name: "About", url: "/about", icon: "SmileOutlined" }],
 				},
-				// {id: 10, name: "myDrag", url: "/myDrag", icon: "smile", children: []},
-				// {id: 2, name: "jQueryDrag", url: "/jQueryDrag", icon: "star", children: []},
-				// {id: 3, name: "DND", url: "/dnd", icon: "switcher", children: []},
-				// {id: 4, name: "DND-demo", url: "/dnd-demo", icon: "block", children: []},
-				// {id: 6, name: "PwdTest", url: "/pwdTest", icon: "number", children: []},
-				// {id: 7, name: "Upload", url: "/upload", icon: "user", children: []},
-				// {id: 8, name: "scroll", url: "/scroll", icon: "user", children: []},
-				// {id: 9, name: "slotTest", url: "/slotTest", icon: "user", children: []},
+				{ id: 2, name: "Pixi", url: "/pixi", icon: "SmileOutlined", children: [] },
 			]);
 
 			// 显示隐藏菜单

@@ -41,15 +41,14 @@
 
 			function toggleCollapsedHandle() {
 				collapsed.value = !collapsed.value;
-				console.log(collapsed);
 			}
 
-			console.log("$route", $route.meta);
+			// console.log("$route", $route.meta);
 
 			watch(
 				$route,
-				(newVal, oldVal) => {
-					console.log("count - watch", newVal.meta, oldVal);
+				newVal => {
+					// console.log("count - watch", newVal.meta, oldVal);
 					hasSideBar = newVal.meta.sideBar ? true : false;
 				},
 				{
@@ -59,31 +58,16 @@
 
 			onBeforeRouteUpdate(to => {
 				// 注意，在路由进入之前，组件实例还未渲染，所以无法获取this实例，只能通过vm来访问组件实例
-				// hasSideBar = to.meta.sideBar;
-				console.log("to", to);
+				hasSideBar = to.meta.sideBar;
 			});
 
 			return {
 				hasSideBar, //true有  false无 根据router中meta  sidebar属性
 				collapsed,
 				toggleCollapsedHandle,
-
 				selectedKeys: ref(["1"]),
 			};
 		},
-
-		// beforeRouteEnter(to, from, next) {
-		// 	// 注意，在路由进入之前，组件实例还未渲染，所以无法获取this实例，只能通过vm来访问组件实例
-		// 	next(vm => {
-		// 		vm.hasSideBar = to.meta.sideBar;
-		// 	});
-		// },
-		// watch: {
-		// 	$route(value) {
-		// 		// console.log(value)
-		// 		this.hasSideBar = value.meta.sideBar ? true : false;
-		// 	},
-		// },
 	};
 </script>
 
