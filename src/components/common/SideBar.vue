@@ -52,7 +52,7 @@
 						<component :is="menu.icon"></component>
 						<span>{{ menu.name }}</span>
 					</template>
-					<a-menu-item v-for="inMenu in menu.children" :key="inMenu.id" @click="menuClick(menu)">
+					<a-menu-item v-for="inMenu in menu.children" :key="inMenu.id" @click="menuClick(inMenu)">
 						<component :is="menu.icon"></component>
 						<span>{{ inMenu.name }}</span>
 					</a-menu-item>
@@ -91,7 +91,16 @@
 					icon: "SmileOutlined",
 					children: [{ id: 1, name: "About", url: "/about", icon: "SmileOutlined" }],
 				},
-				{ id: 2, name: "Pixi", url: "/pixi", icon: "SmileOutlined", children: [] },
+				{
+					id: 2,
+					name: "Pixi",
+					url: "/pixi",
+					icon: "SmileOutlined",
+					children: [
+						{ id: 1, name: "Pixi", url: "/Pixi", icon: "SmileOutlined" },
+						{ id: 2, name: "Plane", url: "/Plane", icon: "SmileOutlined" },
+					],
+				},
 			]);
 
 			// 显示隐藏菜单
@@ -102,7 +111,7 @@
 			// 菜单点击
 			function menuClick(item) {
 				let route = { path: item.url };
-
+				console.log(route);
 				if ($route.path !== item.url) {
 					$router.push(route).catch(() => {});
 				}

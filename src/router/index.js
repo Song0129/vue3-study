@@ -46,13 +46,23 @@ const routes = [
 			},
 			{
 				path: "/pixi",
-				name: "pixi",
+				name: "Pixi",
 				meta: {
 					title: "Pixi",
 					requireAuth: false,
 					sideBar: true,
 				},
-				component: () => import(/* webpackChunkName: "index" */ "../views/Pixi/Pixi"),
+				component: () => import(/* webpackChunkName: "Pixi" */ "../views/Pixi/Pixi.vue"),
+			},
+			{
+				path: "/plane",
+				name: "Plane",
+				meta: {
+					title: "Plane",
+					requireAuth: false,
+					sideBar: true,
+				},
+				component: () => import(/* webpackChunkName: "index" */ "../views/Pixi/Plane/Index.vue"),
 			},
 		],
 	},

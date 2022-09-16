@@ -41,7 +41,7 @@
 				if (rect.x <= 0) {
 					fspeed = speed;
 				}
-				console.log(fspeed);
+				// console.log(fspeed);
 				rect.x += fspeed;
 				rect.y += fspeed * 2;
 			}
