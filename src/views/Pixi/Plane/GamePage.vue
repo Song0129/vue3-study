@@ -11,11 +11,12 @@
 	import { Container } from "pixi.js";
 	import { onMounted, onUnmounted, ref } from "vue";
 	import { createSprite } from "../../../utils";
-	import { containerWidth, containerHeight } from "./config";
-	import { createContainer } from "./utils";
+	import { containerWidth, containerHeight, GameTime } from "./config";
+	import { createContainer, getRandom } from "./utils";
 	import GamePage from "../../../assets/images/game_page.png";
 	import BatteryImg from "../../../assets/images/battery.png";
 	import LaunchImg from "../../../assets/images/launch.png";
+	import BulletImg from "../../../assets/images/bullet.png";
 
 	export default {
 		setup(props, { emit }) {
@@ -25,12 +26,12 @@
 			let GameBg = createSprite(containerWidth, containerHeight, GamePage);
 			box.addChild(GameBg);
 
-			let gameTime = ref(5);
+			let gameTime = ref(GameTime);
 			let GameTimer = setInterval(() => {
 				gameTime.value--;
 				if (gameTime.value === 0) {
 					clearInterval(GameTimer);
-					emit("change-page", "EndPage");
+					emit("change-page", "EndPage", score);
 				}
 			}, 1000);
 
@@ -46,7 +47,23 @@
 			launchBtn.on("pointertap", () => {
 				console.log("launch");
 				score.value++;
+
+				const BulletX = [containerWidth / 2 - 26 / 2 - 22, containerWidth / 2 - 26 / 2 + 18];
+				const bullet = createBullet(BulletX[getRandom(1, 0)]);
+
+				app.ticker.add(BulletTicker.bind(bullet));
+				box.addChild(bullet);
 			});
+
+			function BulletTicker() {
+				// console.log(this);
+				this.y -= 10;
+				if (this.y < 30) {
+					box.removeChild(this);
+					app.ticker.remove(BulletTicker);
+				}
+			}
+
 			batteryContainer.addChild(launchBtn);
 
 			onMounted(() => {
@@ -66,8 +83,8 @@
 	};
 
 	function createBattery() {
-		let batteryContainer = new Container();
-		let battery = createSprite(320, 189, BatteryImg, containerWidth / 2 - 320 / 2, 575);
+		const batteryContainer = new Container();
+		const battery = createSprite(320, 189, BatteryImg, containerWidth / 2 - 320 / 2, 575);
 		return { batteryContainer, battery };
 	}
 
@@ -76,6 +93,13 @@
 		launchBtn.interactive = true;
 		launchBtn.buttonMode = true;
 		return launchBtn;
+	}
+
+	function createBullet(x = containerWidth / 2 - 26 / 2 + 18, y = 574) {
+		const bullet = createSprite(26, 68, BulletImg);
+		bullet.x = x;
+		bullet.y = y;
+		return bullet;
 	}
 </script>
 

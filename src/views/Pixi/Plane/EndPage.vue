@@ -1,5 +1,7 @@
 <template>
-	<div class="EndPage"></div>
+	<div class="EndPage">
+		<div class="score">{{ props.scoreNum }}</div>
+	</div>
 </template>
 
 <script>
@@ -10,6 +12,7 @@
 	import GamePage from "../../../assets/images/game_page.png";
 	import RestartBtnImg from "../../../assets/images/restartBtn.png";
 	export default {
+		props: ["scoreNum"],
 		setup(props, { emit }) {
 			let app = new Application({ width: containerWidth, height: containerHeight });
 
@@ -18,7 +21,6 @@
 
 			let GameBg = createSprite(containerWidth, containerHeight, GamePage);
 
-			console.log(GameBg);
 			box.addChild(GameBg);
 
 			let reStartBtn = createSprite(320, 97, RestartBtnImg, containerWidth / 2 - 320 / 2, "500");
@@ -34,7 +36,10 @@
 				let container = document.querySelector(".EndPage");
 				container.append(app.view);
 			});
-			return {};
+			console.log(props.scoreNum);
+			return {
+				props,
+			};
 		},
 	};
 </script>

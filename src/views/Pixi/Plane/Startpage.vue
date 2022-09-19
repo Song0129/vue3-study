@@ -1,5 +1,5 @@
 <template>
-	<div class="startpage"></div>
+	<div class="StartPage"></div>
 </template>
 
 <script>
@@ -27,7 +27,7 @@
 			box.addChild(startBtn);
 
 			onMounted(() => {
-				let container = document.querySelector(".startpage");
+				let container = document.querySelector(".StartPage");
 				container.append(app.view);
 			});
 			return {};
