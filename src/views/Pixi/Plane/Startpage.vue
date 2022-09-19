@@ -3,26 +3,23 @@
 </template>
 
 <script>
-	import { Application, Container } from "pixi.js";
 	import { onMounted } from "vue";
 	import { createSprite } from "../../../utils";
+	import { containerWidth, containerHeight } from "./config";
+	import { createContainer } from "./utils";
 	import StartPage from "../../../assets/images/start_page.jpg";
 	import startBtnImg from "../../../assets/images/startBtn.png";
 	export default {
 		setup(props, { emit }) {
-			let app = new Application({ width: 430, height: 764 });
-
-			let box = new Container();
+			const { app, box } = createContainer();
 			app.stage.addChild(box);
 
-			let startBg = createSprite(430, 764, StartPage);
+			let startBg = createSprite(containerWidth, containerHeight, StartPage);
 
 			console.log(startBg);
 			box.addChild(startBg);
 
-			let startBtn = createSprite(320, 97, startBtnImg, startBg.width / 2 - 320 / 2, "500");
-			startBtn.interactive = true;
-			startBtn.buttonMode = true;
+			let startBtn = createStartBtn();
 			startBtn.on("pointertap", () => {
 				console.log("click");
 				emit("change-page", "GamePage");
@@ -36,6 +33,13 @@
 			return {};
 		},
 	};
+
+	function createStartBtn() {
+		const startBtn = createSprite(320, 97, startBtnImg, containerWidth / 2 - 320 / 2, "500");
+		startBtn.interactive = true;
+		startBtn.buttonMode = true;
+		return startBtn;
+	}
 </script>
 
 <style lang="less" scoped></style>
