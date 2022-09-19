@@ -1,5 +1,6 @@
 import { Application, Container } from "pixi.js";
-export function createContainer(width, height) {
+import { containerWidth, containerHeight } from "./config";
+export function createContainer(width = containerWidth, height = containerHeight) {
 	const app = new Application({ width, height });
 	const box = new Container();
 	return { app, box };
