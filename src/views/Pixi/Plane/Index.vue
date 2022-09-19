@@ -1,7 +1,9 @@
 <template>
-	<StartPage v-if="currentPage === 'StartPage'" @change-page="handleChangePage"></StartPage>
-	<GamePage v-else-if="currentPage === 'GamePage'" @change-page="handleChangePage"></GamePage>
-	<EndPage v-else-if="currentPage === 'EndPage'" @change-page="handleChangePage"></EndPage>
+	<div class="game">
+		<StartPage v-if="currentPage === 'StartPage'" @change-page="handleChangePage"></StartPage>
+		<GamePage v-else-if="currentPage === 'GamePage'" @change-page="handleChangePage"></GamePage>
+		<EndPage v-else-if="currentPage === 'EndPage'" @change-page="handleChangePage"></EndPage>
+	</div>
 </template>
 
 <script>
@@ -24,4 +26,8 @@
 	};
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+	.game {
+		width: 430px;
+	}
+</style>

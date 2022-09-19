@@ -11,13 +11,11 @@
 						xmlns="http://www.w3.org/2000/svg"
 						p-id="4448"
 						width="30"
-						height="30"
-					>
+						height="30">
 						<path
 							d="M218.112 64h583.296L1024 384.768 509.76 960 0 384.768 218.112 64z m286.08 504.192l-252.48-287.36-86.72 91.968 339.2 366.464 329.28-366.464-77.184-91.968-252.096 287.36z"
 							fill="#fff"
-							p-id="4449"
-						></path>
+							p-id="4449"></path>
 					</svg>
 					<span class="title" :title="title">{{ title }}</span>
 				</h1>
@@ -30,13 +28,11 @@
 						xmlns="http://www.w3.org/2000/svg"
 						p-id="4448"
 						width="30"
-						height="30"
-					>
+						height="30">
 						<path
 							d="M218.112 64h583.296L1024 384.768 509.76 960 0 384.768 218.112 64z m286.08 504.192l-252.48-287.36-86.72 91.968 339.2 366.464 329.28-366.464-77.184-91.968-252.096 287.36z"
 							fill="#fff"
-							p-id="4449"
-						></path>
+							p-id="4449"></path>
 					</svg>
 				</h1>
 			</a>
@@ -132,6 +128,7 @@
 <style scoped lang="less">
 	.leftNav {
 		height: 100%;
+		user-select: none;
 
 		.logo {
 			height: 88px;
