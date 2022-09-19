@@ -3,19 +3,19 @@
 </template>
 
 <script>
-	import { Application, Container, Sprite, Texture } from "pixi.js";
-	import { onMounted, onUnmounted } from "vue";
+	import { Application, Container } from "pixi.js";
+	import { onMounted } from "vue";
 	import { createSprite } from "../../../utils";
 	import StartPage from "../../../assets/images/start_page.jpg";
 	import startBtnImg from "../../../assets/images/startBtn.png";
 	export default {
-		setup() {
-			let app = new Application({ width: 460, height: 764 });
+		setup(props, { emit }) {
+			let app = new Application({ width: 430, height: 764 });
 
 			let box = new Container();
 			app.stage.addChild(box);
 
-			let startBg = createSprite(460, 764, StartPage);
+			let startBg = createSprite(430, 764, StartPage);
 
 			console.log(startBg);
 			box.addChild(startBg);
@@ -25,6 +25,7 @@
 			startBtn.buttonMode = true;
 			startBtn.on("pointertap", () => {
 				console.log("click");
+				emit("change-page", "GamePage");
 			});
 			box.addChild(startBtn);
 
