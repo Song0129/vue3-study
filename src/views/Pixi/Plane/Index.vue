@@ -15,11 +15,11 @@
 		components: { StartPage, GamePage, EndPage },
 		setup() {
 			const currentPage = ref("StartPage");
-			let scoreNum;
+			let scoreNum = ref(0);
 			const handleChangePage = (pageName, score) => {
 				currentPage.value = pageName;
 				console.log(pageName, score);
-				scoreNum = score;
+				scoreNum.value = score;
 			};
 			console.log(scoreNum);
 			return {

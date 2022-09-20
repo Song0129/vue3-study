@@ -1,3 +1,4 @@
-export const containerWidth = 430;
-export const containerHeight = 764;
-export const GameTime = 3;
+export const ContainerWidth = 430;
+export const ContainerHeight = 764;
+export const GameTime = 15;
+export const BulletSpeed = 10;

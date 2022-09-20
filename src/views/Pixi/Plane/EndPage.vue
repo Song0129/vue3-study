@@ -8,22 +8,22 @@
 	import { Application, Container } from "pixi.js";
 	import { onMounted } from "vue";
 	import { createSprite } from "../../../utils";
-	import { containerWidth, containerHeight } from "./config";
+	import { ContainerWidth, ContainerHeight } from "./config";
 	import GamePage from "../../../assets/images/game_page.png";
 	import RestartBtnImg from "../../../assets/images/restartBtn.png";
 	export default {
 		props: ["scoreNum"],
 		setup(props, { emit }) {
-			let app = new Application({ width: containerWidth, height: containerHeight });
+			let app = new Application({ width: ContainerWidth, height: ContainerHeight });
 
 			let box = new Container();
 			app.stage.addChild(box);
 
-			let GameBg = createSprite(containerWidth, containerHeight, GamePage);
+			let GameBg = createSprite(ContainerWidth, ContainerHeight, GamePage);
 
 			box.addChild(GameBg);
 
-			let reStartBtn = createSprite(320, 97, RestartBtnImg, containerWidth / 2 - 320 / 2, "500");
+			let reStartBtn = createSprite(320, 97, RestartBtnImg, ContainerWidth / 2 - 320 / 2, "500");
 			reStartBtn.interactive = true;
 			reStartBtn.buttonMode = true;
 			reStartBtn.on("pointertap", () => {
@@ -44,4 +44,13 @@
 	};
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+	.EndPage {
+		position: relative;
+		.score {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+		}
+	}
+</style>

@@ -1,7 +1,7 @@
 import { Application, Container } from "pixi.js";
-import { containerWidth, containerHeight } from "./config";
+import { ContainerWidth, ContainerHeight } from "./config";
 // 生成舞台和容器
-export function createContainer(width = containerWidth, height = containerHeight) {
+export function createContainer(width = ContainerWidth, height = ContainerHeight) {
 	const app = new Application({ width, height });
 	const box = new Container();
 	return { app, box };

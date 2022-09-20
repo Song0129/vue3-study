@@ -5,7 +5,7 @@
 <script>
 	import { onMounted } from "vue";
 	import { createSprite } from "../../../utils";
-	import { containerWidth, containerHeight } from "./config";
+	import { ContainerWidth, ContainerHeight } from "./config";
 	import { createContainer } from "./utils";
 	import StartPage from "../../../assets/images/start_page.jpg";
 	import startBtnImg from "../../../assets/images/startBtn.png";
@@ -14,9 +14,7 @@
 			const { app, box } = createContainer();
 			app.stage.addChild(box);
 
-			let startBg = createSprite(containerWidth, containerHeight, StartPage);
-
-			console.log(startBg);
+			let startBg = createSprite(ContainerWidth, ContainerHeight, StartPage);
 			box.addChild(startBg);
 
 			let startBtn = createStartBtn();
@@ -35,7 +33,7 @@
 	};
 
 	function createStartBtn() {
-		const startBtn = createSprite(320, 97, startBtnImg, containerWidth / 2 - 320 / 2, "500");
+		const startBtn = createSprite(320, 97, startBtnImg, ContainerWidth / 2 - 320 / 2, "500");
 		startBtn.interactive = true;
 		startBtn.buttonMode = true;
 		return startBtn;
