@@ -25,7 +25,6 @@
 			app.stage.addChild(box);
 
 			let GameBg = createSprite(ContainerWidth, ContainerHeight, GamePage);
-			// GameBg.zIndex = 100;
 			box.addChild(GameBg);
 
 			let gameTime = ref(GameTime);
@@ -42,8 +41,6 @@
 			// 炮台 & 容器
 			const { batteryContainer, battery } = createBattery();
 			batteryContainer.addChild(battery);
-
-			// box.addChild(battery);
 
 			// 发射按钮
 			let launchBtn = createLaunch();
@@ -63,7 +60,6 @@
 			box.addChild(bulletContainer);
 
 			function BulletTicker() {
-				// console.log(this);
 				this.y -= BulletSpeed;
 				if (this.y < 30) {
 					box.removeChild(this);
@@ -73,9 +69,6 @@
 
 			batteryContainer.addChild(launchBtn);
 			box.addChild(batteryContainer);
-			// box.addChild(launchBtn);
-
-			console.log(batteryContainer, bulletContainer);
 
 			onMounted(() => {
 				let container = document.querySelector(".GamePage");
