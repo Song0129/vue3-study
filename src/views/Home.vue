@@ -72,7 +72,7 @@
 </script>
 
 <style scoped lang="less">
-	.ant-layout /deep/ .ant-layout-header {
+	.ant-layout:deep(.ant-layout-header) {
 		height: 88px;
 	}
 
